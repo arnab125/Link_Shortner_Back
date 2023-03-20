@@ -3,9 +3,7 @@ from requests import Response
 from rest_framework.decorators import api_view
 
 # Create your views here.
-from rest_framework import serializers
 from .serializers import urlSerializer
-from rest_framework import status
 from rest_framework.response import Response
 from .models import url
 
@@ -23,7 +21,8 @@ def url_list(request):
 
 def get( request, short_url):
     redirected_url = url.objects.get(short_url=short_url)
-    serializers = urlSerializer(redirected_url)
+    if not redirected_url.url.startswith('http://') and not redirected_url.url.startswith('https://'):
+        redirected_url.url = 'https://' + redirected_url.url
     return redirect(redirected_url.url)
 
 
