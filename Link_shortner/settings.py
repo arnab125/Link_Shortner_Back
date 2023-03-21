@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -81,15 +80,10 @@ WSGI_APPLICATION = 'Link_shortner.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'link_short_db',
-        'USER': 'link_short_db_user',
-        'PASSWORD': '44eXe3bCyYBX9ULBP26PXAWUFYYXS0Nc',
-        'HOST': 'dpg-cgcng3m4dad6fr5qpbng-a.oregon-postgres.render.com',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 
 # Password validation
@@ -133,4 +127,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ORIGIN_WHITELIST = [    "http://localhost:3000",    "https://shongjog.netlify.app",    "https://syln.netlify.app"]
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+    "https://shongjog.netlify.app",
+    "https://syln.netlify.app/"
+]
